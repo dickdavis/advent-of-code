@@ -4,26 +4,18 @@ calories_per_elf = [].tap do |arr|
   elf = 0
   lines = []
   File.foreach('01.txt') do |line|
-    if line.chomp.empty?
-      arr[elf] = lines
-      elf += 1
-      lines = []
-    else
+    unless line.chomp.empty?
       lines << line.chomp.to_i
+      next
     end
+
+    arr[elf] = lines.sum
+    elf += 1
+    lines = []
   end
 end
 
-counted_calories = calories_per_elf.map do |arr|
-  arr.reduce(0) { |sum, n| sum + n }
-end
+top_three = calories_per_elf.sort.reverse.take(3)
 
-puts "Part 1: #{counted_calories.max}"
-
-top_three = [].tap do |arr|
-  3.times do
-    arr << counted_calories.sort!.pop
-  end
-end
-
-puts "Part 2: #{top_three.reduce(0) { |sum, n| sum + n }}"
+puts "Part 1: #{top_three.max} (Expected: 70296)"
+puts "Part 2: #{top_three.sum} (Expected: 205381)"
