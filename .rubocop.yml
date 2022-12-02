@@ -1,0 +1,14 @@
+
+AllCops:
+  NewCops: enable
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/solutions/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/solutions/**/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/solutions/**/*'
+Layout/LineLength:
+  Max: 125
