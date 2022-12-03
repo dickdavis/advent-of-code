@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require './lib/advent_of_code/base_solution'
-
 module Solutions
   module Y2022
     ##
@@ -11,7 +9,7 @@ module Solutions
     # License::   GNU Public License 3
     #
     # Solution for Day 2 of Advent of Code 2022
-    class D02 < AdventOfCode::BaseSolution
+    class D02
       ROCK = 1
       PAPER = 2
       SCISSORS = 3
@@ -20,11 +18,17 @@ module Solutions
       WIN = 6
       private_constant :ROCK, :PAPER, :SCISSORS, :WIN, :LOSE, :DRAW
 
+      def initialize(input:)
+        @input = input
+      end
+
       def solutions
         [scores_for_first_exercise.sum, scores_for_second_exercise.sum]
       end
 
       private
+
+      attr_reader :input
 
       def scores_for_first_exercise
         [].tap do |arr|

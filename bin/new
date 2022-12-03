@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 # Copyright 2022 Dick Davis
@@ -17,25 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
-module AdventOfCode
-  ##
-  # = /lib/advent_of_code/base_solution.rb
-  # Author::    Dick Davis
-  # Copyright:: Copyright 2022 Dick Davis
-  # License::   GNU Public License 3
-  #
-  # Base class for all solutions.
-  class BaseSolution
-    def initialize(input)
-      @input = input
-    end
-
-    def solutions
-      raise NotImplementedError, 'Implement in subclass'
-    end
-
-    private
-
-    attr_reader :input
-  end
-end
+##
+# = /bin/new
+# Author::    Dick Davis
+# Copyright:: Copyright 2022 Dick Davis
+# License::   GNU Public License 3
+#
+# Create a new solution file for the given day and year.
+require './lib/advent_of_code/script_for_new'

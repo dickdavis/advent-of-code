@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require './lib/advent_of_code/base_solution'
-
 module Solutions
   module Y2022
     ##
@@ -11,12 +9,18 @@ module Solutions
     # License::   GNU Public License 3
     #
     # Solution for Day 3 of Advent of Code 2022
-    class D03 < AdventOfCode::BaseSolution
+    class D03
+      def initialize(input:)
+        @input = input
+      end
+
       def solutions
         [scores_for_rucksacks.sum, badge_priorities_per_group.sum]
       end
 
       private
+
+      attr_reader :input
 
       def rucksacks
         @rucksacks ||= input.split

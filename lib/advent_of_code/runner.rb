@@ -18,13 +18,16 @@
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
 module AdventOfCode
+  class NoSolutionFileError < StandardError; end
+  class NoInputFileError < StandardError; end
+
   ##
   # = /lib/advent_of_code/runner.rb
   # Author::    Dick Davis
   # Copyright:: Copyright 2022 Dick Davis
   # License::   GNU Public License 3
   #
-  # Runs the solution(s) for a given day.
+  # Runs the solution set for a given day.
   class Runner
     def initialize(year:, day:)
       @year = year
@@ -32,15 +35,26 @@ module AdventOfCode
     end
 
     def call
-      solver_klass.new(input).solutions
+      raise NoSolutionFileError unless File.exist?(solution_filename)
+      raise NoInputFileError unless File.exist?(input_filename)
+
+      solver_klass.new(input: input_file).solutions
     end
 
     private
 
     attr_reader :year, :day
 
-    def input
-      @input ||= File.read(File.join('./assets', 'inputs', year, "#{day}.txt"))
+    def input_file
+      File.read(input_filename)
+    end
+
+    def input_filename
+      File.join('./assets', 'inputs', year, "#{day}.txt")
+    end
+
+    def solution_filename
+      File.join('./lib', 'solutions', "y#{year}", "d#{day}.rb")
     end
 
     def solver_klass

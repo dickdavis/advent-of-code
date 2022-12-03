@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require './lib/advent_of_code/base_solution'
-
 module Solutions
   module Y2022
     ##
@@ -11,7 +9,11 @@ module Solutions
     # License::   GNU Public License 3
     #
     # Solution for Day 1 of Advent of Code 2022
-    class D01 < AdventOfCode::BaseSolution
+    class D01
+      def initialize(input:)
+        @input = input
+      end
+
       def solutions
         parsed_input = [].tap do |arr|
           input.split("\n\n").each do |group|
@@ -23,6 +25,10 @@ module Solutions
 
         [top_three.max, top_three.sum]
       end
+
+      private
+
+      attr_reader :input
     end
   end
 end
