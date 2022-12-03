@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 require './lib/advent_of_code/base_solution'
-require 'debug'
 
 module Solutions
-  module Year2022
+  module Y2022
     ##
-    # = /lib/solutions/year_2022/day_03.rb
+    # = /lib/solutions/y2022/d03.rb
     # Author::    Dick Davis
     # Copyright:: Copyright 2022 Dick Davis
     # License::   GNU Public License 3
     #
     # Solution for Day 3 of Advent of Code 2022
-    class Day03 < AdventOfCode::BaseSolution
-      def call
+    class D03 < AdventOfCode::BaseSolution
+      def solutions
         [scores_for_rucksacks.sum, badge_priorities_per_group.sum]
       end
 

@@ -32,7 +32,7 @@ module AdventOfCode
     end
 
     def call
-      solver_klass.new(input).call
+      solver_klass.new(input).solutions
     end
 
     private
@@ -44,7 +44,7 @@ module AdventOfCode
     end
 
     def solver_klass
-      Object.const_get("Solutions::Year#{year}::Day#{day}")
+      Object.const_get("Solutions::Y#{year}::D#{day}")
     end
   end
 end
