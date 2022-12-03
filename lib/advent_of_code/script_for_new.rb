@@ -17,13 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
-##
-# = /lib/advent_of_code/base_new.rb
-# Author::    Dick Davis
-# Copyright:: Copyright 2022 Dick Davis
-# License::   GNU Public License 3
-#
-# Processes user input and generates a new solution file.
 require 'optparse'
 require 'English'
 require 'fileutils'
