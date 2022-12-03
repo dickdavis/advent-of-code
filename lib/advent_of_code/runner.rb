@@ -24,7 +24,7 @@ module AdventOfCode
   # Copyright:: Copyright 2022 Dick Davis
   # License::   GNU Public License 3
   #
-  # Runs the solution(s) for a given day.
+  # Runs the solution set for a given day.
   class Runner
     def initialize(year:, day:)
       @year = year
@@ -32,15 +32,15 @@ module AdventOfCode
     end
 
     def call
-      solver_klass.new(input).solutions
+      solver_klass.new(input: input_file).solutions
     end
 
     private
 
     attr_reader :year, :day
 
-    def input
-      @input ||= File.read(File.join('./assets', 'inputs', year, "#{day}.txt"))
+    def input_file
+      File.read(File.join('./assets', 'inputs', year, "#{day}.txt"))
     end
 
     def solver_klass
