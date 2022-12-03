@@ -27,8 +27,9 @@ end
 RDoc::Task.new :rdoc do |rdoc|
   rdoc.main = 'README.md'
   rdoc.rdoc_files.include('README.md',
-                          './lib/*.rb',
-                          './lib/**/*.rb',
+                          './bin/run',
+                          './bin/new',
+                          './lib/advent_of_code/*.rb',
                           './spec/**/*.rb')
   rdoc.title = 'advent-of-code Documentation'
   rdoc.rdoc_dir = 'docs/'
