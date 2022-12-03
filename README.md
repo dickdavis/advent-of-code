@@ -30,10 +30,22 @@ git clone git@github.com:dickdavis/advent-of-code.git
 ```
 
 ### Usage
-Run a solution by providing a year and day in YYYYDD format.
+Generate a new solution by providing a year and day in YYYYDD format.
 
 ```bash
-bin/run -s 202201
+bin/new 202201
+```
+
+After generating the solution, drop your input file in the `assets/` directory under the appropriate year.
+Use the `DD.txt` standard naming convention (example: `01.txt`)
+
+The solution file will be generated in the `lib/solutions/` directory under the appropriate year.
+Modify the `#solutions` method to return an array containing your solutions for each part.
+
+Run the solution by providing a year and day in YYYYDD format.
+
+```bash
+bin/run 202201
 ```
 
 ## Contributing
