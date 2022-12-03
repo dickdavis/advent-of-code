@@ -18,7 +18,7 @@
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
 Dir['./lib/solutions/**/*.rb'].each { |f| require f }
-require_relative 'advent_of_code/base'
+require_relative 'advent_of_code/script_for_run'
 
 ##
 # = AdventOfCode

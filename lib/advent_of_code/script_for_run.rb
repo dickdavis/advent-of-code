@@ -24,7 +24,6 @@
 # License::   GNU Public License 3
 #
 # Main application file that loads other files.
-require_relative 'base_solution'
 require_relative 'runner'
 
 require 'optparse'
