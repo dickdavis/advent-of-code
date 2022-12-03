@@ -18,7 +18,22 @@
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
 module AdventOfCode
+  ##
+  # = NoSolutionFileError
+  # Author::    Dick Davis
+  # Copyright:: Copyright 2022 Dick Davis
+  # License::   GNU Public License 3
+  #
+  # Raised when a solution file is missing.
   class NoSolutionFileError < StandardError; end
+
+  ##
+  # = NoInputFileError
+  # Author::    Dick Davis
+  # Copyright:: Copyright 2022 Dick Davis
+  # License::   GNU Public License 3
+  #
+  # Raised when an input file is missing.
   class NoInputFileError < StandardError; end
 
   ##
@@ -29,14 +44,21 @@ module AdventOfCode
   #
   # Runs the solution set for a given day.
   class Runner
+    ##
+    # Initializes the runner instance with the year and day.
     def initialize(year:, day:)
       @year = year
       @day = day
     end
 
+    ##
+    # Provides the input file to the solution instance and
+    # returns an array with the solutions.
     def call
-      raise NoSolutionFileError unless File.exist?(solution_filename)
       raise NoInputFileError unless File.exist?(input_filename)
+      raise NoSolutionFileError unless File.exist?(solution_filename)
+
+      require solution_filename
 
       solver_klass.new(input: input_file).solutions
     end
@@ -45,18 +67,26 @@ module AdventOfCode
 
     attr_reader :year, :day
 
+    ##
+    # Reads the input file into memory.
     def input_file
       File.read(input_filename)
     end
 
+    ##
+    # Returns the filename of the input file.
     def input_filename
       File.join('./assets', 'inputs', year, "#{day}.txt")
     end
 
+    ##
+    # Returns the filename of the solution file.
     def solution_filename
       File.join('./lib', 'solutions', "y#{year}", "d#{day}.rb")
     end
 
+    ##
+    # Returns the constantized class name of the solution file.
     def solver_klass
       Object.const_get("Solutions::Y#{year}::D#{day}")
     end
