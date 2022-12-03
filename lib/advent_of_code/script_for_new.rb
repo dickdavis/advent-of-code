@@ -35,7 +35,7 @@ trap('INT') do
 end
 
 optparse = OptionParser.new do |opts|
-  opts.banner = 'Usage: advent_of_code [options]'
+  opts.banner = 'Usage: bin/new [YYYYDD] [options]'
 
   opts.on('-l', '--license', 'Displays the copyright notice') do
     puts "This program is free software: you can redistribute it and/or modify
@@ -96,3 +96,4 @@ template_file = File.expand_path(File.join('./templates', 'new_solution.rb.erb')
 rendered_template = ERB.new(File.read(template_file)).result(binding)
 solution_file.puts(rendered_template)
 solution_file.close
+puts 'Solution file created.'

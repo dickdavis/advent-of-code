@@ -35,7 +35,7 @@ trap('INT') do
 end
 
 optparse = OptionParser.new do |opts|
-  opts.banner = 'Usage: advent_of_code [options]'
+  opts.banner = 'Usage: bin/run [YYYYDD] [options]'
 
   opts.on('-l', '--license', 'Displays the copyright notice') do
     puts "This program is free software: you can redistribute it and/or modify
