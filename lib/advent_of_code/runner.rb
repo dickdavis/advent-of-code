@@ -18,6 +18,9 @@
 # along with advent-of-code.  If not, see <http://www.gnu.org/licenses/>.
 
 module AdventOfCode
+  class NoSolutionFileError < StandardError; end
+  class NoInputFileError < StandardError; end
+
   ##
   # = /lib/advent_of_code/runner.rb
   # Author::    Dick Davis
@@ -32,6 +35,9 @@ module AdventOfCode
     end
 
     def call
+      raise NoSolutionFileError unless File.exist?(solution_filename)
+      raise NoInputFileError unless File.exist?(input_filename)
+
       solver_klass.new(input: input_file).solutions
     end
 
@@ -40,7 +46,15 @@ module AdventOfCode
     attr_reader :year, :day
 
     def input_file
-      File.read(File.join('./assets', 'inputs', year, "#{day}.txt"))
+      File.read(input_filename)
+    end
+
+    def input_filename
+      File.join('./assets', 'inputs', year, "#{day}.txt")
+    end
+
+    def solution_filename
+      File.join('./lib', 'solutions', "y#{year}", "d#{day}.rb")
     end
 
     def solver_klass

@@ -83,8 +83,15 @@ elsif day < '01' || day > '25'
   exit 1
 end
 
-solutions = AdventOfCode::Runner.new(year:, day:).call
-
-solutions.each.with_index(1) do |solution, index|
-  puts "Solution #{index}: #{solution}"
+begin
+  solutions = AdventOfCode::Runner.new(year:, day:).call
+  solutions.each.with_index(1) do |solution, index|
+    puts "Solution #{index}: #{solution}"
+  end
+rescue AdventOfCode::NoInputFileError
+  puts 'No input file found for provided values.'
+  exit 1
+rescue AdventOfCode::NoSolutionFileError
+  puts 'No solution file found for provided values.'
+  exit 1
 end
