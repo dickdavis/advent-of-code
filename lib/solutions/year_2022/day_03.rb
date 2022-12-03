@@ -24,17 +24,8 @@ module Solutions
       end
 
       def value_map
-        @value_map ||= lower_case_value_map.merge(upper_case_value_map)
-      end
-
-      def lower_case_value_map
-        {}.tap do |value_map|
+        @value_map ||= {}.tap do |value_map|
           'a'.upto('z').with_index(1) { |letter, index| value_map[letter.to_sym] = index }
-        end
-      end
-
-      def upper_case_value_map
-        {}.tap do |value_map|
           'A'.upto('Z').with_index(27) { |letter, index| value_map[letter.to_sym] = index }
         end
       end
@@ -43,17 +34,18 @@ module Solutions
         [].tap do |scores|
           rucksacks.each do |rucksack|
             first, second = rucksack.chars.each_slice(rucksack.length / 2).to_a
-            scores << value_map[first.intersection(second).first.to_sym]
+            common_item_type = first.intersection(second).first
+            scores << value_map[common_item_type.to_sym]
           end
         end
       end
 
       def badge_priorities_per_group
-        [].tap do |badges|
+        [].tap do |badge_priorities|
           (0..rucksacks.length - 1).step(3) do |index|
             first, second, third = rucksacks.slice(index..(index + 2)).map(&:chars)
-            diff = first.intersection(second).intersection(third).first
-            badges << value_map[diff.to_sym]
+            common_badge_item_type = first.intersection(second).intersection(third).first
+            badge_priorities << value_map[common_badge_item_type.to_sym]
           end
         end
       end
