@@ -68,10 +68,23 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit 1
 end
 
-solutions = AdventOfCode::Runner.new(
-  year: ARGV[0][0..3],
-  day: ARGV[0][4..5]
-).call
+if ARGV[0].nil? || ARGV[0].length != 6
+  puts 'Specify a year and day (format: YYYYDD).'
+  exit 1
+end
+
+year = ARGV[0][0..3]
+day = ARGV[0][4..5]
+
+if year < '2022'
+  puts 'Specify a valid year (as far back as 2022).'
+  exit 1
+elsif day < '01' || day > '25'
+  puts 'Specify a valid day (between 1 and 25).'
+  exit 1
+end
+
+solutions = AdventOfCode::Runner.new(year:, day:).call
 
 solutions.each.with_index(1) do |solution, index|
   puts "Solution #{index}: #{solution}"

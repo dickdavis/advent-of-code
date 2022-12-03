@@ -30,7 +30,7 @@ module AdventOfCode
       @input = input
     end
 
-    def call
+    def solutions
       raise NotImplementedError, 'Implement in subclass'
     end
 

@@ -3,15 +3,15 @@
 require './lib/advent_of_code/base_solution'
 
 module Solutions
-  module Year2022
+  module Y2022
     ##
-    # = /lib/solutions/year_2022/day_02.rb
+    # = /lib/solutions/y2022/d02.rb
     # Author::    Dick Davis
     # Copyright:: Copyright 2022 Dick Davis
     # License::   GNU Public License 3
     #
     # Solution for Day 2 of Advent of Code 2022
-    class Day02 < AdventOfCode::BaseSolution
+    class D02 < AdventOfCode::BaseSolution
       ROCK = 1
       PAPER = 2
       SCISSORS = 3
@@ -20,7 +20,7 @@ module Solutions
       WIN = 6
       private_constant :ROCK, :PAPER, :SCISSORS, :WIN, :LOSE, :DRAW
 
-      def call
+      def solutions
         [scores_for_first_exercise.sum, scores_for_second_exercise.sum]
       end
 
