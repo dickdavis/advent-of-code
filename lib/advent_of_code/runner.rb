@@ -76,19 +76,19 @@ module AdventOfCode
     ##
     # Returns the filename of the input file.
     def input_filename
-      File.join('./assets', 'inputs', year, "#{day}.txt")
+      File.join('./inputs', year, "#{day}.txt")
     end
 
     ##
     # Returns the filename of the solution file.
     def solution_filename
-      File.join('./lib', 'solutions', "y#{year}", "d#{day}.rb")
+      File.join('./solutions', year, "#{day}.rb")
     end
 
     ##
     # Returns the constantized class name of the solution file.
     def solver_klass
-      Object.const_get("Solutions::Y#{year}::D#{day}")
+      Object.const_get("Solutions::Y#{year}D#{day}")
     end
   end
 end

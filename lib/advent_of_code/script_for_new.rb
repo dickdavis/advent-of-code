@@ -76,9 +76,9 @@ elsif @day < '01' || @day > '25'
   exit 1
 end
 
-directory = File.join('./lib', 'solutions', "y#{@year}")
+directory = File.join('./solutions', @year)
 FileUtils.mkdir_p(directory)
-solution_filename = File.join(directory, "d#{@day}.rb")
+solution_filename = File.join(directory, "#{@day}.rb")
 if File.exist?(solution_filename)
   puts 'Solution file already exists.'
   exit 1
