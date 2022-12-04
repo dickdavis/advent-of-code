@@ -79,7 +79,10 @@ end
 begin
   solutions = AdventOfCode::Runner.new(year:, day:).call
   solutions.each.with_index(1) do |solution, index|
-    puts "Solution #{index}: #{solution}"
+    puts "==========START Solution #{index}: #{solution[:solution]}"
+    printer = RubyProf::FlatPrinter.new(solution[:performance])
+    printer.print($stdout, min_percent: 1)
+    puts '==========END'
   end
 rescue AdventOfCode::NoInputFileError
   puts 'No input file found for provided values.'

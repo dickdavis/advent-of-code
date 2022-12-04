@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './lib/advent_of_code/base_solution'
+
 module Solutions
   ##
   # = /solutions/<%= @year %>/<%= @day %>.rb
@@ -8,33 +10,18 @@ module Solutions
   # License::   GNU Public License 3
   #
   # Solution for Day <%= @day.to_i %> of Advent of Code <%= @year %>
-  class Y<%= @year%>D<%= @day %>
-    ##
-    # Initializer for solution
-    # input: the input used to derive a solution
-    def initialize(input:)
-      @input = input
-    end
-
-    ##
-    # Return an array with your solutions for each part.
-    def solutions
-      [first_solution, second_solution]
-    end
-
+  class Y<%= @year%>D<%= @day %> < AdventOfCode::BaseSolution
     private
 
-    attr_reader :input
-
     ##
-    # Get started on the first solution!
-    def first_solution
+    # Returns the solution for the first exercise.
+    def solve_for_first_exercise
       nil
     end
 
     ##
-    # Get started on the second solution!
-    def second_solution
+    # Returns the solution for the second exercise.
+    def solve_for_second_exercise
       nil
     end
   end
