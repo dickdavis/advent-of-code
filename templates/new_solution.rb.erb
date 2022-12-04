@@ -1,43 +1,41 @@
 # frozen_string_literal: true
 
 module Solutions
-  module Y<%= @year%>
+  ##
+  # = /solutions/<%= @year %>/<%= @day %>.rb
+  # Author::    Dick Davis
+  # Copyright:: Copyright 2022 Dick Davis
+  # License::   GNU Public License 3
+  #
+  # Solution for Day <%= @day.to_i %> of Advent of Code <%= @year %>
+  class Y<%= @year%>D<%= @day %>
     ##
-    # = /lib/solutions/y<%= @year %>/d<%= @day %>.rb
-    # Author::    Dick Davis
-    # Copyright:: Copyright 2022 Dick Davis
-    # License::   GNU Public License 3
-    #
-    # Solution for Day <%= @day.to_i %> of Advent of Code <%= @year %>
-    class D<%= @day %>
-      ##
-      # Initializer for solution
-      # input: the input used to derive a solution
-      def initialize(input:)
-        @input = input
-      end
+    # Initializer for solution
+    # input: the input used to derive a solution
+    def initialize(input:)
+      @input = input
+    end
 
-      ##
-      # Return an array with your solutions for each part.
-      def solutions
-        [first_solution, second_solution]
-      end
+    ##
+    # Return an array with your solutions for each part.
+    def solutions
+      [first_solution, second_solution]
+    end
 
-      private
+    private
 
-      attr_reader :input
+    attr_reader :input
 
-      ##
-      # Get started on the first solution!
-      def first_solution
-        nil
-      end
+    ##
+    # Get started on the first solution!
+    def first_solution
+      nil
+    end
 
-      ##
-      # Get started on the second solution!
-      def second_solution
-        nil
-      end
+    ##
+    # Get started on the second solution!
+    def second_solution
+      nil
     end
   end
 end

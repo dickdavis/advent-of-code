@@ -3,12 +3,12 @@ AllCops:
   NewCops: enable
 Metrics/AbcSize:
   Exclude:
-    - 'lib/solutions/**/*'
+    - 'solutions/**/*'
 Metrics/BlockLength:
   Exclude:
-    - 'lib/solutions/**/*'
+    - 'solutions/**/*'
 Metrics/MethodLength:
   Exclude:
-    - 'lib/solutions/**/*'
+    - 'solutions/**/*'
 Layout/LineLength:
   Max: 125
