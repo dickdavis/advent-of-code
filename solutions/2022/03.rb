@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './lib/advent_of_code/base_solution'
+
 module Solutions
   ##
   # = /solutions/2022/03.rb
@@ -8,18 +10,20 @@ module Solutions
   # License::   GNU Public License 3
   #
   # Solution for Day 3 of Advent of Code 2022
-  class Y2022D03
-    def initialize(input:)
-      @input = input
-    end
-
-    def solutions
-      [scores_for_rucksacks.sum, badge_priorities_per_group.sum]
-    end
-
+  class Y2022D03 < AdventOfCode::BaseSolution
     private
 
-    attr_reader :input
+    ##
+    # Returns the solution for the first exercise.
+    def solve_for_first_exercise
+      scores_for_rucksacks.sum
+    end
+
+    ##
+    # Returns the solution for the second exercise.
+    def solve_for_second_exercise
+      badge_priorities_per_group.sum
+    end
 
     def rucksacks
       @rucksacks ||= input.split
