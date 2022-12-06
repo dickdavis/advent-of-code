@@ -41,11 +41,14 @@ module Solutions
 
     def parse_initial_stacks
       {}.tap do |stacks|
-        (1..9).each do |i|
+        stack_data = input.split("\n").select { |line| line.start_with?('[') || line.end_with?(']') }
+        total_stack_count = (stack_data.first.chars.count / 4.to_f).ceil
+
+        (1..total_stack_count).each do |i|
           stacks[i] = []
         end
 
-        input.split("\n").select { |line| line.start_with?('[') || line.end_with?(']') }.each do |line|
+        stack_data.each do |line|
           line.chars.each_slice(4).with_index(1) do |slot, index|
             stacks[index] << slot[1] if slot[0] == '['
           end
