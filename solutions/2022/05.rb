@@ -13,48 +13,46 @@ module Solutions
   class Y2022D05 < AdventOfCode::BaseSolution
     private
 
-    def instructions
-      @instructions ||= input.split("\n").select { |line| line.start_with?('move') }
-    end
-
-    def initial_stack_state
-      {
-        1 => %w[J H P M S F N V],
-        2 => %w[S R L M J D Q],
-        3 => %w[N Q D H C S W B],
-        4 => %w[R S C L],
-        5 => %w[M V T P F B],
-        6 => %w[T R Q N C],
-        7 => %w[G V R],
-        8 => %w[C Z S P D L R],
-        9 => %w[D S J V G P B F]
-      }
-    end
-
     ##
     # Returns the solution for the first exercise.
     def solve_for_first_exercise
-      stacks = initial_stack_state
-
-      instructions.each do |line|
-        line = line.split
-        stacks[line[5].to_i] += stacks[line[3].to_i].pop(line[1].to_i).reverse
-      end
-
-      stacks.map { |_, v| v.pop }.join
+      solve(stacks: parse_initial_stacks)
     end
 
     ##
     # Returns the solution for the second exercise.
     def solve_for_second_exercise
-      stacks = initial_stack_state
+      solve(stacks: parse_initial_stacks, machine: 9001)
+    end
 
+    def solve(stacks:, machine: 9000)
       instructions.each do |line|
         line = line.split
-        stacks[line[5].to_i] += stacks[line[3].to_i].pop(line[1].to_i)
+        stacks_to_move = stacks[line[3].to_i].pop(line[1].to_i)
+        stacks[line[5].to_i] += (machine == 9000 ? stacks_to_move.reverse : stacks_to_move)
       end
 
       stacks.map { |_, v| v.pop }.join
+    end
+
+    def instructions
+      @instructions ||= input.split("\n").select { |line| line.start_with?('move') }
+    end
+
+    def parse_initial_stacks
+      {}.tap do |stacks|
+        (1..9).each do |i|
+          stacks[i] = []
+        end
+
+        input.split("\n").select { |line| line.start_with?('[') || line.end_with?(']') }.each do |line|
+          line.chars.each_slice(4).with_index(1) do |slot, index|
+            stacks[index] << slot[1] if slot[0] == '['
+          end
+        end
+
+        stacks.each_value(&:reverse!)
+      end
     end
   end
 end
