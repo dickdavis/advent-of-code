@@ -27,8 +27,14 @@ trap('INT') do
   exit
 end
 
+options = {}
+
 optparse = OptionParser.new do |opts|
   opts.banner = 'Usage: bin/run [YYYYDD] [options]'
+
+  opts.on('-p', '--performance', 'Displays the performance results for each solution.') do
+    options[:performance] = true
+  end
 
   opts.on('-l', '--license', 'Displays the copyright notice') do
     puts "This program is free software: you can redistribute it and/or modify
@@ -79,10 +85,19 @@ end
 begin
   solutions = AdventOfCode::Runner.new(year:, day:).call
   solutions.each.with_index(1) do |solution, index|
-    puts "==========START Solution #{index}: #{solution[:solution]}"
-    printer = RubyProf::FlatPrinter.new(solution[:performance])
-    printer.print($stdout, min_percent: 1)
-    puts '==========END'
+    print_solution = lambda do
+      puts "Solution #{index}: #{solution[:solution]}"
+    end
+
+    if options[:performance]
+      puts "==========START SOLUTION #{index}"
+      print_solution.call
+      printer = RubyProf::FlatPrinter.new(solution[:performance])
+      printer.print($stdout, min_percent: 1)
+      puts '==========END'
+    else
+      print_solution.call
+    end
   end
 rescue AdventOfCode::NoInputFileError
   puts 'No input file found for provided values.'
