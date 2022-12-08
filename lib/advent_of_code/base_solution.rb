@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'debug'
 require 'ruby-prof'
 
 module AdventOfCode

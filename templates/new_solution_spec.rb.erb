@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+require 'spec_helper'
+
+RSpec.describe Solutions::Y<%= @year%>D<%= @day %> do
+  subject(:solution) { described_class.new(input:) }
+
+  let(:input) do
+    <<~HEREDOC
+    HEREDOC
+  end
+
+  context 'when solving part 1' do
+    it 'returns the correct answer' do
+      expect(solution.solve_for_first_exercise).to eq(nil)
+    end
+  end
+
+  context 'when solving part 2' do
+    it 'returns the correct answer' do
+      expect(solution.solve_for_second_exercise).to eq(nil)
+    end
+  end
+end
