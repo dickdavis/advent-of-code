@@ -77,8 +77,11 @@ elsif @day < '01' || @day > '25'
 end
 
 directory = File.join('./solutions', @year)
+spec_directory = File.join('./spec', 'solutions', @year)
 FileUtils.mkdir_p(directory)
+FileUtils.mkdir_p(spec_directory)
 solution_filename = File.join(directory, "#{@day}.rb")
+solution_spec_filename = File.join(spec_directory, "#{@day}_spec.rb")
 if File.exist?(solution_filename)
   puts 'Solution file already exists.'
   exit 1
@@ -90,3 +93,10 @@ rendered_template = ERB.new(File.read(template_file)).result(binding)
 solution_file.puts(rendered_template)
 solution_file.close
 puts 'Solution file created.'
+
+solution_spec_file = File.new(solution_spec_filename, 'w')
+template_spec_file = File.expand_path(File.join('./templates', 'new_solution_spec.rb.erb'))
+rendered_spec_template = ERB.new(File.read(template_spec_file)).result(binding)
+solution_spec_file.puts(rendered_spec_template)
+solution_spec_file.close
+puts 'Solution spec file created.'
